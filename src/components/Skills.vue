@@ -31,10 +31,12 @@
 </template>
 
 <style lang="scss">
+@import "@/assets/init.scss";
+
 #skills {
 	.skill-value-set .item-title,
 	#traits > * {
-		color: #707070;
+		color: $gray;
 		line-height: 2.86rem;
 	}
 	#traits {

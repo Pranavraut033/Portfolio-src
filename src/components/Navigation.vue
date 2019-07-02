@@ -14,9 +14,9 @@
 						v-for="(link, i) in links"
 						:key="i"
 						class="p-2 pr-4 mb-3"
-						v-bind:class="{active: v == link.ref}"
+						v-bind:class="{ active: v == link.ref }"
 						@click="push(link.ref)"
-					>{{link.text}}</li>
+					>{{ link.text }}</li>
 				</ul>
 				<v-spacer></v-spacer>
 			</div>
