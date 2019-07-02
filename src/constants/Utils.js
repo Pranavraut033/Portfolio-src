@@ -1,4 +1,30 @@
 export default {
+    HTML_UTILS: {
+        getClasses(ele) {
+            return ele.className.split(" ");
+        },
+        addClass(ele, ...names) {
+            let classList = this.getClasses(ele).concat(names);
+            ele.className = [...new Set(classList)].join(" ");
+        },
+        removeClass(ele, ...names) {
+            function arrayRemove(arr, value) {
+                return arr.filter(function (ele) {
+                    return ele != value;
+                });
+            }
+            let classList = this.getClasses(ele)
+            names.forEach((name) => {
+                classList = arrayRemove(classList, name);
+            })
+            ele.className = classList.join(" ");
+        }
+    },
+    arrayRemove(arr, value) {
+        return arr.filter(function (ele) {
+            return ele != value;
+        });
+    },
     blend_colors(color1, color2, percentage) {
         let int_to_hex = (num) => {
             var hex = Math.round(num).toString(16);

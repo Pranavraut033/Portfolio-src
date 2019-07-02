@@ -23,7 +23,10 @@
 			<strong>Note:</strong> The graph is only a guideline.
 			Knowledge of all of these technologies update daily with experience.
 		</p>
-		<h2 class="sub-heading text-muted">Want to work with me? Ok, My traits...</h2>
+		<h2 class="sub-heading text-muted">
+			Looking for working with me? Here, my
+			<b class="primary--text">Traits</b>...
+		</h2>
 		<ul id="traits" class="row">
 			<li class="col-4" v-for="t in traits" :key="t">{{ t }}</li>
 		</ul>
@@ -152,7 +155,7 @@ export default {
 								" 100%)";
 						}, i * 50);
 					}
-				}, 250);
+				}, 150);
 			}
 		}
 	},

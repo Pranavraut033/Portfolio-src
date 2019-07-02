@@ -43,6 +43,12 @@
 						<h1 class="section-title">Contact</h1>
 					</b-container>
 				</section>
+
+				<section ref="achivement" class="p-5">
+					<b-container>
+						<h1 class="section-title">Contact</h1>
+					</b-container>
+				</section>
 			</b-row>
 		</b-container>
 	</div>
@@ -150,11 +156,18 @@ export default {
 				var a = this.$refs[link.ref];
 				if (a) {
 					if (newScroll >= this.lastScroll) {
-						if (a.offsetTop >= newScroll - 600) {
+						if (
+							a.offsetTop >=
+							newScroll - window.innerHeight * 0.9
+						) {
 							b = link.ref;
 							return false;
 						}
-					} else if (a.offsetTop <= newScroll + 600) b = link.ref;
+					} else if (
+						a.offsetTop <=
+						newScroll + window.innerHeight * 0.5
+					)
+						b = link.ref;
 				}
 				return true;
 			});

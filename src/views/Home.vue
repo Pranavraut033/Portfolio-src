@@ -13,14 +13,16 @@ $landing: linear-gradient(-45deg, #d4e6ff 0%, #f6f1ff 100%);
 $skill: linear-gradient(-45deg, #dbffe9 0%, #fdfff3 100%);
 $story: linear-gradient(-45deg, #f3ffdb 0%, #fae8d0 100%);
 $project: linear-gradient(-45deg, #e7dbff 0%, #fae8d0 100%);
-$contact: linear-gradient(-45deg, #212121 0%, black 100%);
+$achivement: linear-gradient(-45deg, #e8ffaa 0%, #f1c2fd 100%);
+$contact: linear-gradient(-45deg, #ffd2d2 0%, #a0ccfd 100%);
 
 $links: (
 	"landing": $landing,
 	"skill": $skill,
 	"story": $story,
 	"project": $project,
-	"social": $contact
+	"social": $contact,
+	"achivement": $achivement
 );
 .main {
 	transition: 800ms linear;
@@ -101,10 +103,13 @@ export default {
 					text: "Projects",
 					ref: "project"
 				},
-
 				{
 					text: "Contact",
 					ref: "social"
+				},
+				{
+					text: "Achivements",
+					ref: "achivement"
 				}
 			]
 		};
