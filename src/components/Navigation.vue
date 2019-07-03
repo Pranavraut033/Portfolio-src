@@ -28,14 +28,36 @@
 	</div>
 </template>
 
+<script>
+export default {
+	props: {
+		value: { type: String },
+		links: { type: Array }
+	},
+	data() {
+		return {
+			close: false,
+			v: this.value,
+			emitted: false
+		};
+	},
+	methods: {
+		push(a) {
+			this.emitted = true;
+			this.$emit("input", a);
+		}
+	},
+	watch: {
+		value(a) {
+			if (!this.emitted) this.v = a;
+			else this.emitted = false;
+		}
+	}
+};
+</script>
+
 <style lang="scss">
-$sm: 576px;
-$md: 768px;
-$lg: 992px;
-$xl: 1200px;
-$primary-color: #3380e7;
-$secondary-color: #e0b232;
-$gray: #707070;
+@import "@/assets/init.scss";
 
 #navigation {
 	z-index: 999;
@@ -156,31 +178,3 @@ $gray: #707070;
 	}
 }
 </style>
-
-<script>
-export default {
-	props: {
-		value: { type: String },
-		links: { type: Array }
-	},
-	data() {
-		return {
-			close: false,
-			v: this.value,
-			emitted: false
-		};
-	},
-	methods: {
-		push(a) {
-			this.emitted = true;
-			this.$emit("input", a);
-		}
-	},
-	watch: {
-		value(a) {
-			if (!this.emitted) this.v = a;
-			else this.emitted = false;
-		}
-	}
-};
-</script>

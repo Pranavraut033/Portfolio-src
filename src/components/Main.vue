@@ -8,7 +8,7 @@
 					@click="scroll()"
 					v-bind:title="lastScroll < 400 ?'Expore':'Scroll to top'"
 				>
-					<img class="img-fluid" src="img/arrow.png">
+					<img class="img-fluid" src="img/arrow.png" />
 				</div>
 
 				<section ref="landing" id="landing" class="d-flex flex-column">
@@ -17,10 +17,10 @@
 						<div class="px-1">Hi, I'am</div>
 						<div class="animate">
 							<span>Pranav Raut</span>
-							<br>
+							<br />
 							<span>&mdash;</span>
 							<span>&nbsp;Developer</span>
-							<br>
+							<br />
 							<span>&amp; Tech enthuse.</span>
 						</div>
 					</b-container>
@@ -29,110 +29,32 @@
 				<section ref="story" class="p-5">
 					<b-container>
 						<h1 class="section-title">My Story</h1>
-						<img class="img-fluid p-5" src="img/working.gif" alt>
+						<img class="img-fluid p-5" src="img/working.gif" alt />
 					</b-container>
 				</section>
 				<section ref="skill" class="p-5">
-					<Skills :animate="value == 'skill'"/>
+					<Skills :animate="value == 'skill'" />
 				</section>
 				<section ref="project" class="p-5">
-					<Projects :animate="value == 'project'"/>
+					<Projects :animate="value == 'project'" />
 				</section>
 				<section ref="social" class="p-5">
 					<b-container>
-						<h1 class="section-title">Contact</h1>
+						<h1 class="section-title">Achivement</h1>
+						<img class="img-fluid p-5" src="img/working.gif" alt />
 					</b-container>
 				</section>
 
 				<section ref="achivement" class="p-5">
 					<b-container>
 						<h1 class="section-title">Contact</h1>
+						<img class="img-fluid p-5" src="img/working.gif" alt />
 					</b-container>
 				</section>
 			</b-row>
 		</b-container>
 	</div>
 </template>
-
-<style lang="scss">
-$sm: 576px;
-$md: 768px;
-$lg: 992px;
-$xl: 1200px;
-$primary-color: #3380e7;
-$secondary-color: #e0b232;
-$gray: #707070;
-
-section {
-	min-height: 100vh;
-	flex: 0 0 100%;
-	max-width: 100%;
-	// border: 1px solid red;
-	.section-title {
-		color: $primary-color;
-	}
-}
-.scroll-indicator,
-.scroll-to-top {
-	position: absolute;
-	bottom: 4rem;
-	opacity: 0.6;
-	right: 10%;
-	z-index: 77;
-	transition: 800ms cubic-bezier(0.23, 1, 0.32, 1);
-
-	&:hover {
-		opacity: 1;
-	}
-}
-.scroll-indicator {
-	background-color: $secondary-color;
-	padding-bottom: 1.3rem;
-	border-radius: 16px 16px 0px 0px;
-	padding: 1rem;
-
-	img {
-		transform: scale(0.6) rotate(180deg);
-	}
-}
-.scroll-to-top {
-	bottom: 8rem !important;
-	padding: 1.2rem !important;
-	background-color: $primary-color !important;
-	border-radius: 50% !important;
-	height: 64px !important;
-	width: 64px !important;
-	text-align: center !important;
-
-	img {
-		height: 100%;
-		transform: scale(1) rotate(0deg);
-	}
-}
-
-#landing {
-	.banner {
-		padding-left: 5%;
-		position: relative;
-
-		div:first-child {
-			font-size: 16pt;
-			color: black;
-			opacity: 0.59;
-		}
-
-		.animate {
-			color: $primary-color;
-			font-size: 5rem;
-			line-height: 6.174rem;
-
-			span:nth-child(3) {
-				color: $secondary-color;
-			}
-		}
-	}
-}
-</style>
 
 <script>
 import Skills from "@/components/Skills";
@@ -218,3 +140,76 @@ export default {
 };
 </script>
 
+<style lang="scss">
+@import "@/assets/init.scss";
+
+section {
+	min-height: 100vh;
+	flex: 0 0 100%;
+	max-width: 100%;
+	// border: 1px solid red;
+	.section-title {
+		color: $primary-color;
+	}
+}
+.scroll-indicator,
+.scroll-to-top {
+	position: absolute;
+	bottom: 4rem;
+	opacity: 0.6;
+	right: 10%;
+	z-index: 77;
+	transition: 800ms cubic-bezier(0.23, 1, 0.32, 1);
+
+	&:hover {
+		opacity: 1;
+	}
+}
+.scroll-indicator {
+	background-color: $secondary-color;
+	padding-bottom: 1.3rem;
+	border-radius: 16px 16px 0px 0px;
+	padding: 1rem;
+
+	img {
+		transform: scale(0.6) rotate(180deg);
+	}
+}
+.scroll-to-top {
+	bottom: 8rem !important;
+	padding: 1.2rem !important;
+	background-color: $primary-color !important;
+	border-radius: 50% !important;
+	height: 64px !important;
+	width: 64px !important;
+	text-align: center !important;
+
+	img {
+		height: 100%;
+		transform: scale(1) rotate(0deg);
+	}
+}
+
+#landing {
+	.banner {
+		padding-left: 5%;
+		position: relative;
+
+		div:first-child {
+			font-size: 16pt;
+			color: black;
+			opacity: 0.59;
+		}
+
+		.animate {
+			color: $primary-color;
+			font-size: 5rem;
+			line-height: 6.174rem;
+
+			span:nth-child(3) {
+				color: $secondary-color;
+			}
+		}
+	}
+}
+</style>

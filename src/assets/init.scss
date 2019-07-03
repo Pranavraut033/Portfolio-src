@@ -2,7 +2,16 @@ $sm: 576px;
 $md: 768px;
 $lg: 992px;
 $xl: 1200px;
+
 $primary-color: rgba(#3380e7, 0.82);
 $secondary-color: #e0b232;
 $gray: #707070;
+
 $ease-in-out: cubic-bezier(0.455, 0.03, 0.515, 0.955);
+
+$landing: linear-gradient(-45deg, #d4e6ff 0%, #f6f1ff 100%);
+$skill: linear-gradient(-45deg, #dbffe9 0%, #fdfff3 100%);
+$story: linear-gradient(-45deg, #f3ffdb 0%, #fae8d0 100%);
+$project: linear-gradient(-45deg, #e7dbff 0%, #fae8d0 100%);
+$achivement: linear-gradient(-45deg, #e8ffaa 0%, #f1c2fd 100%);
+$contact: linear-gradient(-45deg, #ffd2d2 0%, #a0ccfd 100%);

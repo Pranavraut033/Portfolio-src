@@ -23,8 +23,100 @@
 	</b-container>
 </template>
 
+<script>
+import Utils from "../constants/Utils.js";
+import mButtonGroup from "../components/mButtonGroup";
+
+export default {
+	props: { animate: { type: Boolean, default: false } },
+	components: { mButtonGroup },
+	data() {
+		return {
+			platformFilter: "all",
+			animated: false,
+			platforms: ["all", "android", "web", "tools & libaries"],
+			projects: [
+				{
+					title: "Encrypted QR-Code Generator",
+					description:
+						"A small app to create password protected QR-Code along with other Standard barcode",
+					banner: "",
+					platform: "android"
+				},
+				{
+					title: "Face recognition using DL",
+					description: "This ",
+					banner: "",
+					platform: "tools & libaries"
+				},
+				{
+					title: "Khelo Card",
+					description: "This ",
+					banner: "",
+					platform: "web"
+				},
+				{
+					title: "A Mathematical toolkit",
+					description: "This ",
+					banner: "",
+					platform: "android"
+				},
+				{
+					title: "Expression Evaluator",
+					description: "This ",
+					banner: "",
+					platform: "tools & libaries"
+				},
+				{
+					title: "Krishi Mitra",
+					description: "This ",
+					banner: "",
+					platform: "android"
+				},
+				{
+					title: "Digital document organizer",
+					description: "This ",
+					banner: "",
+					platform: "web"
+				}
+			],
+			filteredProjects: []
+		};
+	},
+	mounted() {},
+	watch: {
+		filteredProjects(a) {
+			for (let i = 0; i < a.length; i++) {
+				setTimeout(() => {
+					let ele = this.$refs["item-" + i][0].$el;
+					Utils.HTML_UTILS.addClass(ele, "animate");
+				}, i * 70);
+			}
+		},
+		animate(a) {
+			if (a && !this.animated) {
+				this.animated = true;
+
+				setTimeout(() => {
+					this.filteredProjects = this.projects.slice();
+				}, 150);
+			}
+		},
+		platformFilter(a) {
+			this.filteredProjects =
+				a == "all"
+					? this.projects.slice()
+					: (this.filteredProjects = this.projects.filter(project => {
+							return project.platform == a;
+					  }));
+		}
+	}
+};
+</script>
+
 <style lang="scss">
 @import "@/assets/init.scss";
+
 .project-card {
 	position: relative;
 	height: 300px;
@@ -180,96 +272,3 @@
 	}
 }
 </style>
-
-<script>
-import Utils from "../constants/Utils.js";
-import mButtonGroup from "../components/mButtonGroup";
-
-export default {
-	props: { animate: { type: Boolean, default: false } },
-	components: { mButtonGroup },
-	data() {
-		return {
-			platformFilter: "all",
-			animated: false,
-			platforms: ["all", "android", "web", "tools & libaries"],
-			projects: [
-				{
-					title: "Encrypted QR-Code Generator",
-					description:
-						"A small app to create password protected QR-Code along with other Standard barcode",
-					banner: "",
-					platform: "android"
-				},
-				{
-					title: "Face recognition using DL",
-					description: "This ",
-					banner: "",
-					platform: "tools & libaries"
-				},
-				{
-					title: "Khelo Card",
-					description: "This ",
-					banner: "",
-					platform: "web"
-				},
-				{
-					title: "A Mathematical toolkit",
-					description: "This ",
-					banner: "",
-					platform: "android"
-				},
-				{
-					title: "Expression Evaluator",
-					description: "This ",
-					banner: "",
-					platform: "tools & libaries"
-				},
-				{
-					title: "Krishi Mitra",
-					description: "This ",
-					banner: "",
-					platform: "android"
-				},
-				{
-					title: "Digital document organizer",
-					description: "This ",
-					banner: "",
-					platform: "web"
-				}
-			],
-			filteredProjects: []
-		};
-	},
-	mounted() {},
-	watch: {
-		filteredProjects(a) {
-			for (let i = 0; i < a.length; i++) {
-				setTimeout(() => {
-					let ele = this.$refs["item-" + i][0].$el;
-					Utils.HTML_UTILS.addClass(ele, "animate");
-				}, i * 70);
-			}
-		},
-		animate(a) {
-			if (a && !this.animated) {
-				this.animated = true;
-
-				setTimeout(() => {
-					this.filteredProjects = this.projects.slice();
-				}, 150);
-			}
-		},
-		platformFilter(a) {
-			this.filteredProjects =
-				a == "all"
-					? this.projects.slice()
-					: (this.filteredProjects = this.projects.filter(project => {
-							return project.platform == a;
-					  }));
-		}
-	}
-};
-</script>
-
-

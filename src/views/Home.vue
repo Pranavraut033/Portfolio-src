@@ -1,28 +1,22 @@
 <template>
 	<b-container fluid class="main" v-bind:class="cls">
 		<b-row style="height: 100vh">
-			<Navigation v-model="active" :links="links"/>
+			<Navigation v-model="active" :links="links" />
 			<b-col style="flex: 1; z-index:1;" class="p-0">
-				<Main v-model="active" :links="links"/>
+				<Main v-model="active" :links="links" />
 			</b-col>
 		</b-row>
 	</b-container>
 </template>
 <style lang="scss">
-$landing: linear-gradient(-45deg, #d4e6ff 0%, #f6f1ff 100%);
-$skill: linear-gradient(-45deg, #dbffe9 0%, #fdfff3 100%);
-$story: linear-gradient(-45deg, #f3ffdb 0%, #fae8d0 100%);
-$project: linear-gradient(-45deg, #e7dbff 0%, #fae8d0 100%);
-$achivement: linear-gradient(-45deg, #e8ffaa 0%, #f1c2fd 100%);
-$contact: linear-gradient(-45deg, #ffd2d2 0%, #a0ccfd 100%);
+@import "@/assets/init.scss";
 
 $links: (
 	"landing": $landing,
 	"skill": $skill,
 	"story": $story,
 	"project": $project,
-	"social": $contact,
-	"achivement": $achivement
+	"achivement": $achivement "social": $contact
 );
 .main {
 	transition: 800ms linear;
@@ -104,12 +98,12 @@ export default {
 					ref: "project"
 				},
 				{
-					text: "Contact",
-					ref: "social"
-				},
-				{
 					text: "Achivements",
 					ref: "achivement"
+				},
+				{
+					text: "Contact",
+					ref: "social"
 				}
 			]
 		};

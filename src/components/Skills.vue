@@ -4,13 +4,13 @@
 		<b-row class="text-center py-3 align-items-end">
 			<b-col offset="1" cols="2" class="text-muted h5">
 				em...
-				<br>what's that?
+				<br />what's that?
 			</b-col>
 			<b-col offset="6" cols="2" class="text-muted h5">Rockstar</b-col>
 		</b-row>
 		<b-row class="pb-3">
 			<b-col offset="2" cols="8">
-				<img src="img/ruler.png" class="img-fluid">
+				<img src="img/ruler.png" class="img-fluid" />
 			</b-col>
 		</b-row>
 		<b-row v-for="skill in skills" :key="skill.head" class="align-items-center skill-value-set">
@@ -32,59 +32,6 @@
 		</ul>
 	</b-container>
 </template>
-
-<style lang="scss">
-@import "@/assets/init.scss";
-
-#skills {
-	.skill-value-set .item-title,
-	#traits > * {
-		color: $gray;
-		line-height: 2.86rem;
-	}
-	#traits {
-		padding: 1rem;
-		width: 90%;
-		margin: auto;
-		font-size: 1.4rem !important;
-	}
-	.skill-value-set {
-		opacity: 0.8;
-		transition: 800ms cubic-bezier(0.075, 0.82, 0.165, 1);
-
-		&:hover {
-			opacity: 1;
-			transform: scale(1.0125);
-		}
-
-		.item-title {
-			font-size: 1.65rem;
-			text-align: right;
-			text-transform: capitalize;
-		}
-		.item-value {
-			height: 34px !important;
-
-			& > div {
-				color: white;
-				line-height: 250%;
-				text-align: right;
-				padding: 0px;
-				height: 100%;
-				border-radius: 17px;
-				background-image: linear-gradient(
-					30deg,
-					#e0be7f 0%,
-					#af5d00 100%
-				);
-				width: 0%;
-				opacity: 0.78;
-				transition: 800ms cubic-bezier(0.075, 0.82, 0.165, 1);
-			}
-		}
-	}
-}
-</style>
 
 <script>
 import Utils from "../constants/Utils.js";
@@ -166,4 +113,55 @@ export default {
 };
 </script>
 
+<style lang="scss">
+@import "@/assets/init.scss";
 
+#skills {
+	.skill-value-set .item-title,
+	#traits > * {
+		color: $gray;
+		line-height: 2.86rem;
+	}
+	#traits {
+		padding: 1rem;
+		width: 90%;
+		margin: auto;
+		font-size: 1.4rem !important;
+	}
+	.skill-value-set {
+		opacity: 0.8;
+		transition: 800ms cubic-bezier(0.075, 0.82, 0.165, 1);
+
+		&:hover {
+			opacity: 1;
+			transform: scale(1.0125);
+		}
+
+		.item-title {
+			font-size: 1.65rem;
+			text-align: right;
+			text-transform: capitalize;
+		}
+		.item-value {
+			height: 34px !important;
+
+			& > div {
+				color: white;
+				line-height: 250%;
+				text-align: right;
+				padding: 0px;
+				height: 100%;
+				border-radius: 17px;
+				background-image: linear-gradient(
+					30deg,
+					#e0be7f 0%,
+					#af5d00 100%
+				);
+				width: 0%;
+				opacity: 0.78;
+				transition: 800ms cubic-bezier(0.075, 0.82, 0.165, 1);
+			}
+		}
+	}
+}
+</style>
