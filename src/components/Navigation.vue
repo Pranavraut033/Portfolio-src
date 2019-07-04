@@ -1,5 +1,5 @@
 <template>
-	<div id="navigation" v-bind:class="{close: close}">
+	<aside id="navigation" v-bind:class="{'n-close': close, 'start-animation' : !startAnimation }">
 		<div class="nav-sidebar">
 			<a href="\">
 				<div class="nav-title">
@@ -21,11 +21,8 @@
 				<v-spacer></v-spacer>
 			</div>
 		</div>
-		<v-btn class="menu-btn" outline large @click="close = false">
-			<v-icon>menu</v-icon>
-		</v-btn>
 		<div class="back-drop rounded" @click="close = true"></div>
-	</div>
+	</aside>
 </template>
 
 <script>
@@ -36,7 +33,7 @@ export default {
 	},
 	data() {
 		return {
-			close: false,
+			close: true,
 			v: this.value,
 			emitted: false
 		};
@@ -56,21 +53,12 @@ export default {
 };
 </script>
 
-<style lang="scss">
+<style lang="scss" scoped>
 @import "@/assets/init.scss";
 
 #navigation {
 	z-index: 999;
-
-	.menu-btn {
-		top: 5rem;
-		left: 1rem;
-		z-index: 2;
-		visibility: hidden;
-		min-width: 0px;
-		padding-right: 1rem;
-		padding-left: 1rem;
-	}
+	transition: 500ms ease;
 
 	.back-drop {
 		position: fixed;
@@ -89,7 +77,7 @@ export default {
 		display: flex;
 		flex-direction: column;
 		height: 100vh;
-		min-width: 230px;
+		min-width: 275px;
 		margin-left: -10px;
 		overflow-x: hidden;
 		text-align: right;
@@ -116,7 +104,7 @@ export default {
 
 			li {
 				cursor: default;
-				font-size: 1.5rem;
+				font-size: 1.4rem;
 				font-weight: 100;
 				border-radius: 1.6rem;
 				background: transparent;
@@ -124,17 +112,13 @@ export default {
 				color: #707070;
 
 				&.active {
-					font-size: 2.521rem;
+					font-size: 2.3rem;
 					font-weight: bold;
 					text-transform: lowercase;
 					color: $secondary-color !important;
 
 					&:before {
 						content: ".";
-						font-size: 2.521rem;
-						font-weight: bold;
-						text-transform: lowercase;
-						color: $secondary-color !important;
 					}
 				}
 
@@ -145,11 +129,13 @@ export default {
 			}
 		}
 	}
+}
 
-	@media (max-width: $md) {
+@media (max-width: $lg) {
+	#navigation {
 		.nav-sidebar {
-			min-width: 250px;
-			position: absolute;
+			min-width: 300px;
+			position: fixed;
 			left: 0px;
 			text-align: center;
 			z-index: 4;
@@ -158,15 +144,14 @@ export default {
 			transition: 300ms cubic-bezier(0.075, 0.82, 0.165, 1);
 		}
 
-		.menu-btn,
 		.back-drop {
 			visibility: visible;
 			opacity: 1;
 		}
 
-		&.close {
+		&.n-close {
 			.nav-sidebar {
-				left: -250px;
+				left: -300px;
 				box-shadow: unset;
 			}
 

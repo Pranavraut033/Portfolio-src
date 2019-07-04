@@ -1,7 +1,6 @@
 <template>
-	<div class="m-btn-container d-sm-inline-block">
+	<div class="m-btn-container text-nowrap">
 		<div
-			class="d-sm-inline-block"
 			v-for="(item, i) in items"
 			:key="i"
 			:ref="'item-' + i"
@@ -12,12 +11,69 @@
 	</div>
 </template>
 
+<script>
+import Utils from "../constants/Utils";
+
+export default {
+	props: {
+		color: { type: String, default: "primary" },
+		value: { type: String, default: "" },
+		items: {
+			type: Array,
+			default: () => {
+				return [""];
+			},
+			required: true
+		},
+		activeClass: { type: String, default: "m-btn-active" },
+		idleClass: { type: String, default: "m-btn" },
+		toggle: { type: Boolean, default: true }
+	},
+	data() {
+		return { colors: this.color.split(" ") };
+	},
+
+	methods: {
+		pushValue(item) {
+			if (item != this.value) this.$emit("input", item);
+		}
+	},
+	mounted() {
+		Utils.HTML_UTILS.addClass(
+			this.$refs["item-" + this.items.indexOf(this.value)][0],
+			this.activeClass,
+			this.colors[0] + "--text",
+			this.colors[1]
+		);
+	},
+	watch: {
+		value(a, b) {
+			let preEle = this.$refs["item-" + this.items.indexOf(b)][0];
+			let newEle = this.$refs["item-" + this.items.indexOf(a)][0];
+			Utils.HTML_UTILS.removeClass(
+				preEle,
+				this.activeClass,
+				this.colors[0] + "--text",
+				this.colors[1]
+			);
+			Utils.HTML_UTILS.addClass(
+				newEle,
+				this.activeClass,
+				this.colors[0] + "--text",
+				this.colors[1]
+			);
+		}
+	}
+};
+</script>
+
 <style lang="scss">
 $elevation-1: 0px 2px 1px -1px rgba(0, 0, 0, 0.2),
 	0px 1px 1px 0px rgba(0, 0, 0, 0.14), 0px 1px 3px 0px rgba(0, 0, 0, 0.12) !important;
 $b-raduis: 4px;
 
 .m-btn-container {
+	display: inline-block;
 	border-radius: $b-raduis;
 	background: #8c8c8c;
 	color: #cacaca;
@@ -26,7 +82,10 @@ $b-raduis: 4px;
 	text-transform: uppercase;
 	box-shadow: $elevation-1;
 	transition: 350ms cubic-bezier(0.075, 0.82, 0.165, 1);
-
+	overflow: auto;
+	div {
+		display: inline-block;
+	}
 	&.flat {
 		box-shadow: none !important;
 		background: transparent !important;
@@ -86,59 +145,3 @@ $b-raduis: 4px;
 	}
 }
 </style>
-
-<script>
-import Utils from "../constants/Utils";
-
-export default {
-	props: {
-		color: { type: String, default: "primary" },
-		value: { type: String, default: "" },
-		items: {
-			type: Array,
-			default: () => {
-				return [""];
-			},
-			required: true
-		},
-		activeClass: { type: String, default: "m-btn-active" },
-		idleClass: { type: String, default: "m-btn" },
-		toggle: { type: Boolean, default: true }
-	},
-	data() {
-		return { colors: this.color.split(" ") };
-	},
-
-	methods: {
-		pushValue(item) {
-			if (item != this.value) this.$emit("input", item);
-		}
-	},
-	mounted() {
-		Utils.HTML_UTILS.addClass(
-			this.$refs["item-" + this.items.indexOf(this.value)][0],
-			this.activeClass,
-			this.colors[0] + "--text",
-			this.colors[1]
-		);
-	},
-	watch: {
-		value(a, b) {
-			let preEle = this.$refs["item-" + this.items.indexOf(b)][0];
-			let newEle = this.$refs["item-" + this.items.indexOf(a)][0];
-			Utils.HTML_UTILS.removeClass(
-				preEle,
-				this.activeClass,
-				this.colors[0] + "--text",
-				this.colors[1]
-			);
-			Utils.HTML_UTILS.addClass(
-				newEle,
-				this.activeClass,
-				this.colors[0] + "--text",
-				this.colors[1]
-			);
-		}
-	}
-};
-</script>

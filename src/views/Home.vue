@@ -1,8 +1,8 @@
 <template>
-	<b-container fluid class="main" v-bind:class="cls">
+	<b-container fluid class="main" v-bind:class="!startAnimation ? 'landing-start' : cls">
 		<b-row style="height: 100vh">
 			<Navigation v-model="active" :links="links" />
-			<b-col style="flex: 1; z-index:1;" class="p-0">
+			<b-col style="flex: 1; z-index:1;" class="pr-0">
 				<Main v-model="active" :links="links" />
 			</b-col>
 		</b-row>
@@ -66,6 +66,14 @@ export default {
 .main {
 	transition: 800ms linear;
 	position: relative;
+	&.landing-start {
+		&:after {
+			background: #eee !important;
+		}
+		&:before {
+			opacity: 0;
+		}
+	}
 	&:after,
 	&:before {
 		content: "";
@@ -74,8 +82,12 @@ export default {
 		right: 0;
 		left: 0;
 		bottom: 0;
-		background: $landing;
 		transition: 8000ms cubic-bezier(0.075, 0.82, 0.165, 1);
+	}
+
+	&:before {
+		opacity: 1;
+		background: $landing;
 	}
 
 	$i: 0;

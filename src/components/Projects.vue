@@ -1,24 +1,29 @@
 <template>
-	<b-container class="d-flex h-100 py-0 flex-column">
-		<div class="flex-grow-0">
-			<h1 class="section-title d-inline-block">Some of my work...</h1>&emsp;
-			<mButtonGroup
-				class="float-right"
-				v-model="platformFilter"
-				:items="platforms"
-				color="orange darken-2"
-			></mButtonGroup>
-		</div>
-		<b-row class="py-1 py-md-3">
-			<b-col md="4" sm="6" cols="12" v-for="(project, index) in filteredProjects" :key="index">
-				<v-card :ref="'item-' + index" class="project-card border" flat>
-					<div class="project-card-content">
-						<h5>{{ project.title }}</h5>
-						<p>{{ project.description }}</p>
-						<v-btn class="project-btn" outline color="white" :to="'projects/' + index">Know more...</v-btn>
-					</div>
-				</v-card>
+	<!-- <b-container style="display:flex" class="flex-column h-100"> -->
+	<b-container>
+		<b-row align-h="between" class="pb-1 pb-md-3">
+			<b-col>
+				<h1 class="section-title text-nowrap">Some of my work...</h1>&emsp;
 			</b-col>
+			<b-col class="text-md-right">
+				<mButtonGroup v-model="platformFilter" :items="platforms" color="orange darken-2"></mButtonGroup>
+			</b-col>
+		</b-row>
+		<!-- <b-row class="flex-grow-1"> -->
+		<b-row>
+			<template v-for="(project, index) in filteredProjects">
+				<v-slide-y-transition :key="index">
+					<b-col lg="4" md="6" cols="12">
+						<v-card :ref="'item-' + index" class="project-card border" flat>
+							<div class="project-card-content">
+								<h5>{{ project.title }}</h5>
+								<p>{{ project.description }}</p>
+								<v-btn class="project-btn" outline color="white" :to="'projects/' + index">Know more...</v-btn>
+							</div>
+						</v-card>
+					</b-col>
+				</v-slide-y-transition>
+			</template>
 		</b-row>
 	</b-container>
 </template>
@@ -28,7 +33,7 @@ import Utils from "../constants/Utils.js";
 import mButtonGroup from "../components/mButtonGroup";
 
 export default {
-	props: { animate: { type: Boolean, default: false } },
+	props: { active: { type: Boolean, default: false } },
 	components: { mButtonGroup },
 	data() {
 		return {
@@ -44,8 +49,10 @@ export default {
 					platform: "android"
 				},
 				{
-					title: "Face recognition using DL",
-					description: "This ",
+					title: "Automatic Attendence system ",
+					description:
+						"A college project in machine learning which uses Deep Learning and Computer Vision " +
+						"to detect faces and automatically mark their attendance in the database",
 					banner: "",
 					platform: "tools & libaries"
 				},
@@ -93,7 +100,7 @@ export default {
 				}, i * 70);
 			}
 		},
-		animate(a) {
+		active(a) {
 			if (a && !this.animated) {
 				this.animated = true;
 
@@ -108,6 +115,7 @@ export default {
 				this.filteredProjects = this.projects.filter(
 					project => project.platform == a
 				);
+			// this.filteredProjects = this.filteredProjects.slice(0, 3);
 		}
 	}
 };
@@ -157,7 +165,7 @@ export default {
 		opacity: 0;
 		z-index: 2;
 		border-radius: 4px;
-		background-color: $primary-color;
+		background-color: #9eb9f5;
 		visibility: hidden;
 	}
 
@@ -167,11 +175,11 @@ export default {
 		display: flex;
 		flex-direction: column;
 		width: 100%;
-		height: 34%;
+		height: 38%;
 		padding: 1rem 1.8rem;
 		opacity: 1;
 		background: #4b4b4b;
-		transition: 300ms $ease-in-out 100ms;
+		transition: 300ms ease 100ms;
 
 		.project-btn {
 			visibility: hidden;
@@ -189,7 +197,7 @@ export default {
 			&:before,
 			&:after {
 				content: "";
-				transition: 300ms $ease-in-out;
+				transition: 300ms ease;
 			}
 			&:before {
 				flex: 1;
@@ -206,28 +214,34 @@ export default {
 		}
 		p {
 			flex: 1;
-			line-height: 100%;
 			font-size: 10pt;
 			color: $gray;
 			text-align: right;
-			text-overflow: ellipsis;
 			overflow: hidden;
-			line-clamp: 2 "… (Read More)";
-			transition: 300ms $ease-in-out;
+
+			-webkit-line-clamp: 2; /* number of lines to show */
+			line-height: 18px; /* fallback */
+			max-height: 18px * 2; /* fallback */
+
+			text-overflow: ellipsis;
+			display: -webkit-box;
+			-webkit-box-orient: vertical;
+
+			transition: 300ms ease;
 		}
 	}
 
 	&:hover {
 		&:after {
 			top: 0;
-			height: 30%;
-			animation: close 600ms $ease-in-out;
+			height: 38%;
+			animation: close 600ms ease;
 		}
 
 		@keyframes close {
 			0% {
 				top: 60%;
-				height: 40%;
+				height: 45%;
 				opacity: 0;
 				visibility: visible;
 			}
@@ -238,7 +252,7 @@ export default {
 			}
 			100% {
 				opacity: 0;
-				height: 30%;
+				height: 38%;
 			}
 		}
 		.project-card-content {
@@ -259,10 +273,16 @@ export default {
 
 			p {
 				text-align: center;
-				line-height: 170%;
-				color: #fff8;
+				line-height: 22px;
+				color: #fffb;
 				overflow: hidden;
+				text-overflow: none;
+				-webkit-line-clamp: unset; /* number of lines to show */
 				text-overflow: ellipsis;
+				max-height: 100%; /* fallback */
+				display: unset;
+				-webkit-box-orient: unset;
+
 				&:after {
 					flex: 1;
 				}

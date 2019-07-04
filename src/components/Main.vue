@@ -1,51 +1,47 @@
 <template>
-	<div ref="main" class="overflow-x-hidden" v-on:scroll.native="handleScroll" style="height: 100vh;">
+	<main
+		ref="main"
+		v-bind:class="{ 'scrollbar-hidden' : !startAnimation }"
+		v-on:scroll.native="handleScroll"
+		style="height: 100vh;"
+	>
 		<b-container class="py-0">
 			<b-row>
 				<div
 					v-ripple
-					v-bind:class="lastScroll < 400 ? 'scroll-indicator': 'scroll-to-top'"
+					v-bind:class="[
+						lastScroll < 400 ? 'scroll-indicator': 'scroll-to-top',
+					 	{ 'start-animation' : !startAnimation }
+					]"
 					@click="scroll()"
 					v-bind:title="lastScroll < 400 ?'Expore':'Scroll to top'"
 				>
 					<img class="img-fluid" src="img/arrow.png" />
 				</div>
 
-				<section ref="landing" id="landing" class="d-flex flex-column">
-					<v-spacer></v-spacer>
-					<b-container class="banner">
-						<div class="px-1">Hi, I'am</div>
-						<div class="animate">
-							<span>Pranav Raut</span>
-							<br />
-							<span>&mdash;</span>
-							<span>&nbsp;Developer</span>
-							<br />
-							<span>&amp; Tech enthuse.</span>
-						</div>
-					</b-container>
-					<v-spacer></v-spacer>
+				<section ref="landing">
+					<Landing></Landing>
 				</section>
-				<section ref="story" class="p-5">
+				<section ref="story">
 					<b-container>
 						<h1 class="section-title">My Story</h1>
 						<img class="img-fluid p-5" src="img/working.gif" alt />
 					</b-container>
 				</section>
-				<section ref="skill" class="p-5">
-					<Skills :animate="value == 'skill'" />
+				<section ref="skill">
+					<Skills :active="value == 'skill'" />
 				</section>
-				<section ref="project" class="p-5">
-					<Projects :animate="value == 'project'" />
+				<section ref="project">
+					<Projects :active="value == 'project'" />
 				</section>
-				<section ref="social" class="p-5">
+				<section ref="social">
 					<b-container>
 						<h1 class="section-title">Achivement</h1>
 						<img class="img-fluid p-5" src="img/working.gif" alt />
 					</b-container>
 				</section>
 
-				<section ref="achivement" class="p-5">
+				<section ref="achivement">
 					<b-container>
 						<h1 class="section-title">Contact</h1>
 						<img class="img-fluid p-5" src="img/working.gif" alt />
@@ -53,21 +49,23 @@
 				</section>
 			</b-row>
 		</b-container>
-	</div>
+	</main>
 </template>
 
 <script>
 import Skills from "@/components/Skills";
 import Projects from "@/components/Projects";
+import Landing from "@/components/Landing";
 
 export default {
-	components: { Skills, Projects },
+	components: { Landing, Skills, Projects },
 	props: { links: { type: Array }, value: { type: String } },
 	data() {
 		return {
 			lastScroll: 0,
 			lastRef: this.value,
-			i: 0
+			i: 0,
+			animateLanding: false
 		};
 	},
 	methods: {
@@ -104,9 +102,7 @@ export default {
 					? 0
 					: this.$refs[this.links[1].ref].offsetTop,
 				15,
-				a => {
-					this.$refs.main.scrollTop = a;
-				}
+				a => (this.$refs.main.scrollTop = a)
 			);
 		},
 		animate(a, b, duration, callback) {
@@ -125,10 +121,8 @@ export default {
 				this.animate(
 					Math.ceil(this.$refs.main.scrollTop),
 					Math.ceil(this.$refs[a].offsetTop),
-					20,
-					a => {
-						this.$refs.main.scrollTop = a;
-					}
+					15,
+					a => (this.$refs.main.scrollTop = a)
 				);
 				this.lastRef = a;
 			}
@@ -142,7 +136,37 @@ export default {
 
 <style lang="scss">
 @import "@/assets/init.scss";
+main {
+	overflow-x: hidden;
+	&::-webkit-scrollbar {
+		width: 12px;
+		box-shadow: inset 0px 0px 5px rgba(#000, 0.3);
 
+		&-track {
+			background: transparent;
+			border-radius: 2px;
+		}
+		&-thumb {
+			border-radius: 2px;
+			background: rgba(#676767, 0.56);
+			&:hover {
+				background: rgba(#676767, 0.78);
+			}
+		}
+	}
+	&.scrollbar-hidden {
+		&::-webkit-scrollbar {
+			box-shadow: unset;
+
+			&-thumb {
+				background: transparent;
+				&:hover {
+					background: transparent;
+				}
+			}
+		}
+	}
+}
 section {
 	min-height: 100vh;
 	flex: 0 0 100%;
@@ -155,7 +179,7 @@ section {
 .scroll-indicator,
 .scroll-to-top {
 	position: absolute;
-	bottom: 4rem;
+	bottom: 0;
 	opacity: 0.6;
 	right: 10%;
 	z-index: 77;
@@ -175,8 +199,9 @@ section {
 		transform: scale(0.6) rotate(180deg);
 	}
 }
+
 .scroll-to-top {
-	bottom: 8rem !important;
+	bottom: 4rem !important;
 	padding: 1.2rem !important;
 	background-color: $primary-color !important;
 	border-radius: 50% !important;
@@ -187,29 +212,6 @@ section {
 	img {
 		height: 100%;
 		transform: scale(1) rotate(0deg);
-	}
-}
-
-#landing {
-	.banner {
-		padding-left: 5%;
-		position: relative;
-
-		div:first-child {
-			font-size: 16pt;
-			color: black;
-			opacity: 0.59;
-		}
-
-		.animate {
-			color: $primary-color;
-			font-size: 5rem;
-			line-height: 6.174rem;
-
-			span:nth-child(3) {
-				color: $secondary-color;
-			}
-		}
 	}
 }
 </style>

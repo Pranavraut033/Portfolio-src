@@ -31,6 +31,12 @@ a {
 button {
 	outline: none !important;
 }
+
+.start-animation {
+	opacity: 0 !important;
+	visibility: hidden !important;
+	transform: translateY(-20px);
+}
 </style>
 
 <script>

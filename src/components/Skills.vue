@@ -1,34 +1,45 @@
 <template>
 	<b-container id="skills">
 		<h1 class="section-title">My Superpowers...</h1>
-		<b-row class="text-center py-3 align-items-end">
-			<b-col offset="1" cols="2" class="text-muted h5">
-				em...
-				<br />what's that?
-			</b-col>
-			<b-col offset="6" cols="2" class="text-muted h5">Rockstar</b-col>
-		</b-row>
+
 		<b-row class="pb-3">
-			<b-col offset="2" cols="8">
+			<b-col offset="0" offset-lg="2" cols="12" lg="8">
+				<b-row class="py-3 align-items-end text-muted h5 m-0" align-h="between">
+					<b-col cols="4" md="2" class="text-center">
+						em...
+						<br />
+						<span class="text-nowrap">what's that?</span>
+					</b-col>
+					<b-col cols="4" md="2">Proficient</b-col>
+				</b-row>
+			</b-col>
+			<b-col offset="0" offset-lg="2" cols="12" lg="8">
 				<img src="img/ruler.png" class="img-fluid" />
 			</b-col>
 		</b-row>
-		<b-row v-for="skill in skills" :key="skill.head" class="align-items-center skill-value-set">
-			<b-col cols="2" class="item-title" v-bind:title="skill.title">{{skill.head}}</b-col>
-			<b-col cols="8" class="item-value">
+		<b-row v-for="skill in skills" :key="skill.text" class="skill-value-set">
+			<b-col
+				lg="2"
+				class="item-title text-lg-right"
+				v-bind:title="skill.title || skill.text"
+			>{{skill.text}}</b-col>
+			<b-col cols="12" lg="8" class="item-value mb-3 py-md-0">
 				<div v-bind:data-value="skill.value"></div>
 			</b-col>
 		</b-row>
-		<p class="py-3 text-muted" style="font-size: 11.5pt">
+		<p class="py-1 py-md-3 text-muted" style="font-size: 1.2rem">
 			<strong>Note:</strong> The graph is only a guideline.
 			Knowledge of all of these technologies update daily with experience.
 		</p>
 		<h2 class="sub-heading text-muted">
-			Looking for working with me? Here, my
-			<b class="primary--text">Traits</b>...
+			Looking for working with me?
+			<span class="text-nowrap">
+				Here, my
+				<b class="primary--text">Traits</b>...
+			</span>
 		</h2>
 		<ul id="traits" class="row">
-			<li class="col-4" v-for="t in traits" :key="t">{{ t }}</li>
+			<li class="col-12 col-sm-6 col-lg-4" v-for="t in traits" :key="t">{{ t }}</li>
 		</ul>
 	</b-container>
 </template>
@@ -37,7 +48,7 @@
 import Utils from "../constants/Utils.js";
 
 export default {
-	props: { animate: { type: Boolean, default: false } },
+	props: { active: { type: Boolean, default: false } },
 	data() {
 		return {
 			animated: false,
@@ -52,30 +63,30 @@ export default {
 				"Problem solving"
 			],
 			skills: [
-				{ head: "Android", value: 68 },
-				// { head: "Web", value: 94 },
-				// { head: "SQL", value: 67 },
-				{ head: "Git", value: 74 },
-				{ head: "HTML(5)", value: 86 },
-				{ head: "MS-Word", value: 83 },
-				{ head: "MS-PPT", value: 64, title: "Microsoft Powerpoint" },
-				{ head: "Kotlin", value: 84 },
-				{ head: "Java", value: 78 },
-				{ head: "Adobe XD", value: 84 },
-				{ head: "Adobe PS", value: 54, title: "Adobe Photoshop" },
-				// { head: "MS-EXCEL", value: 54 },
+				{ text: "Android", value: 68 },
+				// { text: "Web", value: 94 },
+				{ text: "MySQL", value: 67 },
+				{ text: "Git", value: 74 },
+				{ text: "HTML(5)", value: 86 },
+				{ text: "MS-Word", value: 83 },
+				{ text: "MS-PPT", value: 64, title: "Microsoft Powerpoint" },
+				{ text: "Kotlin", value: 84 },
+				{ text: "Java", value: 78 },
+				{ text: "Adobe XD", value: 84 },
+				{ text: "Adobe PS", value: 54, title: "Adobe Photoshop" },
+				{ text: "VueJS", value: 96 },
 				{
-					head: "SASS",
+					text: "SASS",
 					value: 90,
 					title: "Syntactically Awesome Style Sheets"
 				},
-				{ head: "CSS(3)", value: 92 },
-				{ head: "JavaScript(ES6)", value: 86 }
+				{ text: "CSS(3)", value: 92 },
+				{ text: "JavaScript", value: 86 }
 			]
 		};
 	},
 	watch: {
-		animate(a) {
+		active(a) {
 			if (!this.animated && a) {
 				this.animated = true;
 
@@ -108,7 +119,7 @@ export default {
 	},
 	mounted() {
 		this.traits = this.traits.sort();
-		this.skills = this.skills.sort(Utils.sort_by("head", false));
+		this.skills = this.skills.sort(Utils.sort_by("text", false));
 	}
 };
 </script>
@@ -139,8 +150,10 @@ export default {
 
 		.item-title {
 			font-size: 1.65rem;
-			text-align: right;
 			text-transform: capitalize;
+			text-overflow: ellipsis;
+			white-space: nowrap;
+			overflow: hidden;
 		}
 		.item-value {
 			height: 34px !important;
@@ -160,6 +173,7 @@ export default {
 				width: 0%;
 				opacity: 0.78;
 				transition: 800ms cubic-bezier(0.075, 0.82, 0.165, 1);
+				position: relative;
 			}
 		}
 	}
