@@ -103,12 +103,11 @@ export default {
 			}
 		},
 		platformFilter(a) {
-			this.filteredProjects =
-				a == "all"
-					? this.projects.slice()
-					: (this.filteredProjects = this.projects.filter(project => {
-							return project.platform == a;
-					  }));
+			if (a == "all") this.filteredProjects = this.projects.slice();
+			else
+				this.filteredProjects = this.projects.filter(
+					project => project.platform == a
+				);
 		}
 	}
 };
