@@ -22,7 +22,7 @@
 				lg="2"
 				class="item-title text-lg-right"
 				v-bind:title="skill.title || skill.text"
-			>{{skill.text}}</b-col>
+			>{{ skill.text }}</b-col>
 			<b-col cols="12" lg="8" class="item-value mb-3 py-md-0">
 				<div v-bind:data-value="skill.value"></div>
 			</b-col>
@@ -31,7 +31,7 @@
 			<strong>Note:</strong> The graph is only a guideline.
 			Knowledge of all of these technologies update daily with experience.
 		</p>
-		<h2 class="sub-heading text-muted">
+		<!-- <h2 class="sub-heading text-muted">
 			Looking for working with me?
 			<span class="text-nowrap">
 				Here, my
@@ -40,7 +40,7 @@
 		</h2>
 		<ul id="traits" class="row">
 			<li class="col-12 col-sm-6 col-lg-4" v-for="t in traits" :key="t">{{ t }}</li>
-		</ul>
+		</ul>-->
 	</b-container>
 </template>
 
@@ -63,17 +63,19 @@ export default {
 				"Problem solving"
 			],
 			skills: [
-				{ text: "Android", value: 68 },
+				{ text: "Android", value: 76 },
 				// { text: "Web", value: 94 },
-				{ text: "MySQL", value: 67 },
+				{ text: "MySQL", value: 82 },
+				{ text: "MongoDB", value: 87 },
+				{ text: "NodeJS", value: 91 },
 				{ text: "Git", value: 74 },
-				{ text: "HTML(5)", value: 86 },
-				{ text: "MS-Word", value: 83 },
-				{ text: "MS-PPT", value: 64, title: "Microsoft Powerpoint" },
+				// { text: "HTML(5)", value: 86 },
+				// { text: "MS-Word", value: 83 },
+				// { text: "MS-PPT", value: 64, title: "Microsoft Powerpoint" },
 				{ text: "Kotlin", value: 84 },
 				{ text: "Java", value: 78 },
-				{ text: "Adobe XD", value: 84 },
-				{ text: "Adobe PS", value: 54, title: "Adobe Photoshop" },
+				{ text: "Adobe XD", value: 87 },
+				{ text: "Adobe PS", value: 72, title: "Adobe Photoshop" },
 				{ text: "VueJS", value: 96 },
 				{
 					text: "SASS",

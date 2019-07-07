@@ -1,5 +1,6 @@
 <template>
 	<main
+		id="main"
 		ref="main"
 		v-bind:class="{ 'scrollbar-hidden' : !startAnimation }"
 		v-on:scroll.native="handleScroll"
@@ -18,30 +19,25 @@
 				>
 					<img class="img-fluid" src="img/arrow.png" />
 				</div>
-
-				<section ref="landing">
+				<section id="landing" ref="landing">
 					<Landing></Landing>
 				</section>
-				<section ref="story">
-					<b-container>
-						<h1 class="section-title">My Story</h1>
-						<img class="img-fluid p-5" src="img/working.gif" alt />
-					</b-container>
+				<section id="story" ref="story">
+					<Story></Story>
 				</section>
-				<section ref="skill">
+				<section id="skill" ref="skill">
 					<Skills :active="value == 'skill'" />
 				</section>
-				<section ref="project">
+				<section id="project" ref="project">
 					<Projects :active="value == 'project'" />
 				</section>
-				<section ref="social">
+				<!-- <section id="achivement" ref="achivement">
 					<b-container>
 						<h1 class="section-title">Achivement</h1>
 						<img class="img-fluid p-5" src="img/working.gif" alt />
 					</b-container>
-				</section>
-
-				<section ref="achivement">
+				</section>-->
+				<section id="social" ref="social">
 					<b-container>
 						<h1 class="section-title">Contact</h1>
 						<img class="img-fluid p-5" src="img/working.gif" alt />
@@ -53,12 +49,13 @@
 </template>
 
 <script>
+import Landing from "@/components/Landing";
+import Story from "@/components/Story";
 import Skills from "@/components/Skills";
 import Projects from "@/components/Projects";
-import Landing from "@/components/Landing";
 
 export default {
-	components: { Landing, Skills, Projects },
+	components: { Landing, Story, Skills, Projects },
 	props: { links: { type: Array }, value: { type: String } },
 	data() {
 		return {
@@ -96,34 +93,19 @@ export default {
 			this.$emit("input", (this.lastRef = b));
 		},
 		scroll() {
-			this.animate(
-				this.$refs.main.scrollTop,
-				this.lastScroll >= 100
-					? 0
-					: this.$refs[this.links[1].ref].offsetTop,
-				15,
-				a => (this.$refs.main.scrollTop = a)
+			this.$vuetify.goTo(
+				"#" +
+					(this.lastScroll >= 100
+						? this.links[0].ref
+						: this.links[1].ref),
+				{ container: "#main" }
 			);
-		},
-		animate(a, b, duration, callback) {
-			let steps = b - a;
-			let increments = steps / duration;
-			var scrollInterval = setInterval(() => {
-				if (Math.ceil(a) == b || Math.floor(a) == b) {
-					window.clearInterval(scrollInterval);
-				} else callback((a += increments));
-			}, 15);
 		}
 	},
 	watch: {
 		value(a, b) {
 			if (this.lastRef == b) {
-				this.animate(
-					Math.ceil(this.$refs.main.scrollTop),
-					Math.ceil(this.$refs[a].offsetTop),
-					15,
-					a => (this.$refs.main.scrollTop = a)
-				);
+				this.$vuetify.goTo("#" + a, { container: "#main" });
 				this.lastRef = a;
 			}
 		}
@@ -137,34 +119,28 @@ export default {
 <style lang="scss">
 @import "@/assets/init.scss";
 main {
-	overflow-x: hidden;
-	&::-webkit-scrollbar {
-		width: 12px;
-		box-shadow: inset 0px 0px 5px rgba(#000, 0.3);
-
-		&-track {
-			background: transparent;
-			border-radius: 2px;
-		}
-		&-thumb {
-			border-radius: 2px;
-			background: rgba(#676767, 0.56);
-			&:hover {
-				background: rgba(#676767, 0.78);
-			}
-		}
-	}
-	&.scrollbar-hidden {
+	overflow-y: auto;
+	@media (max-width: $md) {
 		&::-webkit-scrollbar {
-			box-shadow: unset;
+			width: 12px;
+			box-shadow: inset 0px 0px 5px rgba(#000, 0.3);
 
-			&-thumb {
+			&-track {
 				background: transparent;
+				border-radius: 2px;
+			}
+			&-thumb {
+				border-radius: 2px;
+				background: rgba(#676767, 0.56);
 				&:hover {
-					background: transparent;
+					background: rgba(#676767, 0.78);
 				}
 			}
 		}
+	}
+
+	&.scrollbar-hidden {
+		overflow: hidden;
 	}
 }
 section {

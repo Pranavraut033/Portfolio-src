@@ -12,7 +12,7 @@ export default new Router({
         name: 'home',
         component: Home,
         meta: {
-            title: "Home"
+            title: "Pranav Raut - Freelance Developer"
         }
     }]
 })

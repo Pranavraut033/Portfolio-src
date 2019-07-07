@@ -40,10 +40,10 @@ export default {
 					text: "Projects",
 					ref: "project"
 				},
-				{
-					text: "Achivements",
-					ref: "achivement"
-				},
+				// {
+				// 	text: "Achivements",
+				// 	ref: "achivement"
+				// },
 				{
 					text: "Contact",
 					ref: "social"

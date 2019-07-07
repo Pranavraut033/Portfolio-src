@@ -8,7 +8,7 @@
 			>
 				<div class="px-md-1">Hi, I'am</div>
 				<div class="main-content">
-					<p>Pranav Raut</p>
+					<p>Pranav Raut.</p>
 					<br />
 					<p>&mdash;</p>
 					<p>&nbsp;Developer</p>
@@ -95,7 +95,6 @@ export default {
 		font-size: 2.435rem;
 		line-height: 3.274rem;
 		transition: 500ms ease;
-
 		p:nth-child(3) {
 			color: $secondary-color;
 		}
@@ -107,7 +106,7 @@ export default {
 
 		@media (min-width: $md) {
 			font-size: 5rem;
-			line-height: 6.174rem;
+			line-height: 5.4rem;
 		}
 	}
 }
