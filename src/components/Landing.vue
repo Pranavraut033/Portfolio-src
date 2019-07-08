@@ -37,10 +37,13 @@ export default {
 
 <style lang="scss" scoped>
 @import "@/assets/init.scss";
+@import url("https://fonts.googleapis.com/css?family=Nova+Slim&display=swap");
+@import url("https://fonts.googleapis.com/css?family=Nova+Slim|Offside&display=swap");
 
 .banner {
 	padding-left: 5%;
 	position: relative;
+	font-family: "Offside", cursive !important;
 
 	&.animate-start {
 		div:first-child {
@@ -48,14 +51,18 @@ export default {
 			transform: translateY(20px) !important;
 		}
 		.main-content {
-			p:nth-child(1),
-			p:nth-child(4),
-			p:nth-child(6),
-			p:nth-child(7) {
+			p:nth-child(1) {
 				opacity: 0 !important;
 				transform: translateY(20px) !important;
 			}
-			p:nth-child(3) {
+
+			p:nth-child(6) {
+				opacity: 0 !important;
+			}
+
+			p:nth-child(4),
+			p:nth-child(3),
+			p:nth-child(7) {
 				opacity: 0 !important;
 				transform: translateX(-20px) !important;
 			}
@@ -70,9 +77,7 @@ export default {
 				$i: index($p-indices, $index);
 
 				p:nth-child(#{$index}) {
-					opacity: 1;
-					transform: translateY(0px) translatex(0px);
-					transition: 500ms ease (500ms + $i * 600ms);
+					transition: 500ms ease (600ms + $i * 600ms);
 				}
 			}
 		}
@@ -87,26 +92,46 @@ export default {
 		font-size: 16pt;
 		color: #676767;
 		opacity: 0.8;
+		padding-bottom: 20px;
 		transition: 500ms ease;
 	}
 
 	.main-content {
-		color: $primary-color;
+		transition: 500ms ease;
 		font-size: 2.435rem;
 		line-height: 3.274rem;
-		transition: 500ms ease;
+		color: $primary-color;
+
+		p:nth-child(1) {
+			text-transform: uppercase;
+			font-size: 2.435rem;
+			line-height: 3.274rem;
+			color: $primary-color;
+			letter-spacing: 10px;
+
+			@media (min-width: $sm) {
+				font-size: 4.5rem;
+				line-height: 4.974rem;
+			}
+
+			@media (min-width: $md) {
+				font-size: 5rem;
+				line-height: 5.4rem;
+			}
+		}
+
 		p:nth-child(3) {
 			color: $secondary-color;
 		}
 
 		@media (min-width: $sm) {
-			font-size: 4.5rem;
-			line-height: 4.974rem;
+			font-size: 3.1rem;
+			line-height: 3.274rem;
 		}
 
 		@media (min-width: $md) {
-			font-size: 5rem;
-			line-height: 5.4rem;
+			font-size: 4rem;
+			line-height: 4.2rem;
 		}
 	}
 }

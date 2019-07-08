@@ -20,10 +20,15 @@
 	-ms-user-select: none; /* Internet Explorer/Edge */
 	user-select: none; /* Non-prefixed version, currently supported by Chrome and Opera */
 }
+@import url("https://fonts.googleapis.com/css?family=Comfortaa:300,500,700&display=swap");
 @import url("https://fonts.googleapis.com/css?family=Chivo:300,400,700|Fredoka+One");
+
 html {
 	@extend .noselect;
 	overflow-y: hidden !important;
+}
+.application {
+	font-family: "Comfortaa", cursive !important;
 }
 a {
 	text-decoration: none !important;

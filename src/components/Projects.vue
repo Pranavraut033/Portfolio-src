@@ -123,13 +123,15 @@ export default {
 
 <style lang="scss">
 @import "@/assets/init.scss";
+@import url("https://fonts.googleapis.com/css?family=Share+Tech+Mono&display=swap");
 
 .project-card {
 	position: relative;
 	height: 300px;
 	opacity: 0;
+	background: red;
 	margin-bottom: 1rem;
-	border-radius: 4px;
+	border-radius: 4px !important;
 	transform: translateY(80%) rotate(12deg) translateX(-20%);
 
 	&.animate {
@@ -165,20 +167,21 @@ export default {
 		opacity: 0;
 		z-index: 2;
 		border-radius: 4px;
-		background-color: #9eb9f5;
+		background-color: $primary-color;
 		visibility: hidden;
 	}
 
 	.project-card-content {
+		border-radius: 4px !important;
 		position: absolute;
-		bottom: 0;
+		bottom: 0px;
 		display: flex;
 		flex-direction: column;
 		width: 100%;
 		height: 38%;
 		padding: 1rem 1.8rem;
 		opacity: 1;
-		background: #4b4b4b;
+		background: #d1d1d1;
 		transition: 300ms ease 100ms;
 
 		.project-btn {
@@ -191,7 +194,6 @@ export default {
 			text-transform: capitalize;
 			text-align: center;
 		}
-		p,
 		h5 {
 			display: flex;
 			&:before,
@@ -205,17 +207,18 @@ export default {
 		}
 		h5 {
 			font-size: 13pt;
-			color: $primary-color;
+			color: #4787db;
 			line-height: 18pt;
 			white-space: nowrap;
 			text-overflow: ellipsis;
 			overflow: hidden;
 			display: flex;
+			font-family: "Share Tech Mono", monospace;
 		}
 		p {
 			flex: 1;
-			font-size: 10pt;
-			color: $gray;
+			font-size: 11pt;
+			color: rgba(0, 0, 0, 0.67);
 			text-align: right;
 			overflow: hidden;
 
@@ -233,7 +236,7 @@ export default {
 
 	&:hover {
 		&:after {
-			top: 0;
+			top: -1px;
 			height: 38%;
 			animation: close 600ms ease;
 		}
@@ -246,7 +249,7 @@ export default {
 				visibility: visible;
 			}
 			65% {
-				top: 0;
+				top: -1px;
 				height: 100%;
 				opacity: 1;
 			}
@@ -272,20 +275,16 @@ export default {
 			}
 
 			p {
+				font-size: 13pt;
 				text-align: center;
-				line-height: 22px;
-				color: #fffb;
+				line-height: 26px;
+				color: rgba(0, 0, 0, 0.74);
 				overflow: hidden;
-				text-overflow: none;
 				-webkit-line-clamp: unset; /* number of lines to show */
 				text-overflow: ellipsis;
 				max-height: 100%; /* fallback */
 				display: unset;
 				-webkit-box-orient: unset;
-
-				&:after {
-					flex: 1;
-				}
 			}
 		}
 	}
