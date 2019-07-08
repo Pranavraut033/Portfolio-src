@@ -14,12 +14,18 @@
 			<template v-for="(project, index) in filteredProjects">
 				<v-slide-y-transition :key="index">
 					<b-col lg="4" md="6" cols="12">
-						<v-card :ref="'item-' + index" class="project-card border" flat>
-							<div class="project-card-content">
+						<v-card :ref="'item-' + index" class="project-card" flat>
+							<v-img :src="'/img/'+project.banner" lazy-src="red"></v-img>
+							<v-card class="project-card-content">
 								<h5>{{ project.title }}</h5>
 								<p>{{ project.description }}</p>
-								<v-btn class="project-btn" outline color="white" :to="'projects/' + index">Know more...</v-btn>
-							</div>
+								<v-btn
+									class="project-btn"
+									outline
+									color="gray lighten-2"
+									:to="'projects/' + index"
+								>Know more...</v-btn>
+							</v-card>
 						</v-card>
 					</b-col>
 				</v-slide-y-transition>
@@ -45,7 +51,7 @@ export default {
 					title: "Encrypted QR-Code Generator",
 					description:
 						"A small app to create password protected QR-Code along with other Standard barcode",
-					banner: "",
+					banner: "barcodeGenerator.png",
 					platform: "android"
 				},
 				{

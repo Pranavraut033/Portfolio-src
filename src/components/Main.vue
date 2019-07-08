@@ -12,7 +12,7 @@
 					v-ripple
 					v-bind:class="[
 						lastScroll < 400 ? 'scroll-indicator': 'scroll-to-top',
-					 	{ 'start-animation' : !startAnimation }
+						{ 'start-animation' : !startAnimation }
 					]"
 					@click="scroll()"
 					v-bind:title="lastScroll < 400 ?'Expore':'Scroll to top'"
