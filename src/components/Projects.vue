@@ -71,13 +71,13 @@ export default {
 				{
 					title: "A Mathematical toolkit",
 					description: "This ",
-					banner: "",
+					banner: "numbers.png",
 					platform: "android"
 				},
 				{
 					title: "Expression Evaluator",
 					description: "This ",
-					banner: "",
+					banner: "expression.png",
 					platform: "tools & libaries"
 				},
 				{
