@@ -107,7 +107,6 @@ export default {
 			font-size: 2.435rem;
 			line-height: 3.274rem;
 			color: $primary-color;
-			letter-spacing: 10px;
 
 			@media (min-width: $sm) {
 				font-size: 4.5rem;

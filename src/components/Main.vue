@@ -120,10 +120,9 @@ export default {
 @import "@/assets/init.scss";
 main {
 	overflow-y: auto;
-	@media (max-width: $md) {
+	@media (min-width: $md) {
 		&::-webkit-scrollbar {
 			width: 12px;
-			box-shadow: inset 0px 0px 5px rgba(#000, 0.3);
 
 			&-track {
 				background: transparent;
