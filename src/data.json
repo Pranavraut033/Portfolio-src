@@ -1,0 +1,46 @@
+{
+  "projects": [
+    {
+      "title": "Encrypted QR-Code Generator",
+      "description": "A small app to create password protected QR-Code along with other Standard barcode",
+      "banner": "barcodeGenerator.png",
+      "platform": "android"
+    },
+    {
+      "title": "Automatic Attendence system ",
+      "description": "A college project in machine learning which uses Deep Learning and Computer Vision to detect faces and automatically mark their attendance in the database",
+      "banner": "",
+      "platform": "tools & libaries"
+    },
+    {
+      "title": "Khelo Card - Virtual Card",
+      "description": "Buy and sell virtual Card online",
+      "banner": "",
+      "platform": "web"
+    },
+    {
+      "title": "A Mathematical toolkit",
+      "description": "This was my first android app it contain: a calculator, a unit convertor, matrix solver and date span calculator",
+      "banner": "numbers.png",
+      "platform": "android"
+    },
+    {
+      "title": "Expression Evaluator",
+      "description": "Math expression evaluator; It support functions (sine, cosine, log, sqrt, etc...), parentheses which follows bodmas rule.",
+      "banner": "expression.png",
+      "platform": "tools & libaries"
+    },
+    {
+      "title": "Krishi Mitra",
+      "description": "A case study on OLX application and recreate it in android",
+      "banner": "",
+      "platform": "android"
+    },
+    {
+      "title": "Digital document organizer",
+      "description": "Java project  ",
+      "banner": "",
+      "platform": "web"
+    }
+  ]
+}
